@@ -1,0 +1,27 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "cockroachdb"
+  url      = env("DATABASE_URL")
+}
+
+
+enum STATUS {
+  PENDING
+  COMPLETED
+}
+
+model note {
+  id            String @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  title         String
+  description   String?
+  status        STATUS  @default(PENDING)
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
