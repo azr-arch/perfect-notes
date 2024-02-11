@@ -9,8 +9,7 @@ export type ActionState<TInput, TOutput> = {
     data?: TOutput;
 };
 
-// This is for validating data using zod, before making a DB Call
-// validating in the sense, of chekcing the default or required lenght of data and something like that[ can you write this correnctly]
+// This is for validating data using zod, before proceding further server calls
 
 export const createSafeAction = <TInput, TOutput>(
     schema: z.Schema<TInput>,

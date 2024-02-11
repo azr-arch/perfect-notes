@@ -4,32 +4,34 @@ import { db } from "@/lib/db";
 import { InputType } from "./types";
 import { revalidatePath } from "next/cache";
 import { createSafeAction } from "@/lib/create-safe-action";
-import { CreateNoteSchema } from "./schema";
+import { UpdateNoteSchema } from "./schema";
 
 export const handler = async (data: InputType) => {
-    const { title, description } = data;
+    const { id, ...values } = data;
 
-    let newNote;
+    let updatedNote;
 
     try {
-        newNote = await db.note.create({
+        updatedNote = await db.note.update({
+            where: {
+                id,
+            },
             data: {
-                title,
-                description,
+                ...values,
             },
         });
     } catch (e) {
         console.log("ERROR: ", e);
         return {
-            errors: "Failed to create.",
+            errors: "Failed to update",
         };
     }
 
     revalidatePath("/");
 
     return {
-        data: newNote,
+        data: updatedNote,
     };
 };
 
-export const createNote = createSafeAction(CreateNoteSchema, handler);
+export const updateNote = createSafeAction(UpdateNoteSchema, handler);
