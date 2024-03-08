@@ -11,11 +11,9 @@ export const Header = () => {
     return (
         <header className="flex items-center space-x-4">
             <h1 className="text-3xl">Notes</h1>
-            <NoteAddPopover align="start" side="right" sideOffset={10}>
-                <Button size={"sm"}>
-                    <PlusIcon className="w-4 h-4" />
-                </Button>
-            </NoteAddPopover>
+            <Button size={"sm"} onClick={onOpen}>
+                <PlusIcon className="w-4 h-4" />
+            </Button>
         </header>
     );
 };

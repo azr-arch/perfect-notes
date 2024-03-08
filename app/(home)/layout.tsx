@@ -1,3 +1,4 @@
+import { Toaster } from "@/components/ui/toaster";
 import { ModalProvider } from "@/providers/modal-provider";
 
 export default function HomeLayout({ children }: { children: React.ReactNode }) {

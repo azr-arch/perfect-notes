@@ -2,8 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Delete, MoreVertical, XCircle } from "lucide-react";
+import { Delete, MoreVertical, Trash2, XCircle } from "lucide-react";
 import { handler as deleteNoteHandler } from "@/actions/delete-note";
+import { toast } from "@/components/ui/use-toast";
 
 interface NoteOptionsProps {
     id: string;
@@ -12,12 +13,16 @@ interface NoteOptionsProps {
 export const NoteOptions = ({ id }: NoteOptionsProps) => {
     const onDelete = async () => {
         try {
-            //  Use something like fetch query for loading error states!!!
-
             await deleteNoteHandler({ id });
+            toast({
+                title: "Note Deleted.",
+            });
         } catch (error) {
             console.log(error);
-            // Maybe notify user that an error occured!!!
+            toast({
+                title: "Error while Deleting.",
+                variant: "destructive",
+            });
         }
     };
 
@@ -28,14 +33,14 @@ export const NoteOptions = ({ id }: NoteOptionsProps) => {
                     <MoreVertical className="w-4 h-4" />
                 </Button>
             </PopoverTrigger>
-            <PopoverContent className="w-fit ">
+            <PopoverContent side="right" align="start" className="w-fit ">
                 <Button
                     size="sm"
                     className="text-rose-500 hover:text-rose-500 hover:bg-rose-500/10"
                     variant={"ghost"}
                     onClick={onDelete}
                 >
-                    <Delete className="w-4 h-4 mr-2" />
+                    <Trash2 className="w-4 h-4 mr-2" />
                     Delete
                 </Button>
             </PopoverContent>

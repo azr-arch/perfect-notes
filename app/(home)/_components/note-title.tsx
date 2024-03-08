@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useAction } from "@/hooks/use-action";
 import { updateNote } from "@/actions/update-note";
 import { useFormStatus } from "react-dom";
+import { toast } from "@/components/ui/use-toast";
 
 interface NoteTitleProps {
     data: note;
@@ -26,9 +27,16 @@ export const NoteTitle = ({ data }: NoteTitleProps) => {
         onSuccess: (data) => {
             setTitle(data.title);
             disableEditing();
+            toast({
+                title: `Renamed successfully.`,
+            });
         },
         onError: (error) => {
             console.log(error);
+            toast({
+                variant: "destructive",
+                title: "Error occured, try again later.",
+            });
         },
     });
 
@@ -74,6 +82,7 @@ export const NoteTitle = ({ data }: NoteTitleProps) => {
         return (
             <form
                 action={onSubmit}
+                // @ts-ignore
                 onKeyDown={handleKeys}
                 ref={formRef}
                 className="w-[85%]"
