@@ -8,7 +8,8 @@ type NoteModalStore = {
     onClose: () => void;
 };
 
-export const useNoteModal = create<NoteModalStore>((set) => ({
+// Modal for adding a note
+export const useNewNoteModal = create<NoteModalStore>((set) => ({
     isOpen: false,
     onOpen: () => set({ isOpen: true }),
     onClose: () => set({ isOpen: false }),

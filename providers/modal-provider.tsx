@@ -1,6 +1,6 @@
 "use client";
 
-import { NoteModal } from "@/components/note-modal";
+import { NoteModal } from "@/components/new-note-modal";
 import { useEffect, useState } from "react";
 
 export const ModalProvider = () => {

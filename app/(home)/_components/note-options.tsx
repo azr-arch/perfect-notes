@@ -28,7 +28,7 @@ export const NoteOptions = ({ id }: NoteOptionsProps) => {
 
     return (
         <Popover>
-            <PopoverTrigger asChild className="absolute right-0 top-0.5">
+            <PopoverTrigger asChild>
                 <Button size="sm" variant={"transparent"} className="w-auto h-auto p-1">
                     <MoreVertical className="w-4 h-4" />
                 </Button>

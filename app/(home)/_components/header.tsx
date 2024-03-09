@@ -1,12 +1,11 @@
 "use client";
 
-import { NoteAddPopover } from "@/components/note-add-popover";
 import { Button } from "@/components/ui/button";
-import { useNoteModal } from "@/hooks/use-note-modal";
+import { useNewNoteModal } from "@/hooks/use-new-note-modal";
 import { PlusIcon } from "@radix-ui/react-icons";
 
 export const Header = () => {
-    const { onOpen } = useNoteModal();
+    const { onOpen } = useNewNoteModal();
 
     return (
         <header className="flex items-center space-x-4">
